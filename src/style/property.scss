@@ -1,0 +1,410 @@
+$primary-color: #384bff;
+$secondary-color: #2135f3;
+$white-color: #fff;
+$light-color: #d2d2d2;
+$border-color: #e7e7e7;
+$rating-color: #ffb443;
+$heading-color: #232323;
+$dark-color: #272727;
+$black-color: #010101;
+
+$transition: 0.8s cubic-bezier(0.22, 0.78, 0.45, 1.02);
+
+.propertypage {
+  width: 100%;
+  position: relative;
+
+  .hero {
+    width: 100%;
+    height: 14rem;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 2rem;
+    background: $primary-color;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+    }
+
+    .overlay {
+      width: 100%;
+      height: 100%;
+      z-index: 10;
+      top: 0;
+      left: 0;
+      opacity: 0.3;
+      position: absolute;
+      background: $black-color;
+    }
+  }
+
+  .content {
+    width: 100%;
+    position: relative;
+    padding: 2rem 0;
+    gap: 1rem;
+    display: flex;
+    align-items: start;
+
+    @media (max-width: 700px) {
+      display: flex;
+      flex-direction: column-reverse;
+    }
+
+    .main {
+      width: 100%;
+      padding: 1rem 0;
+      position: relative;
+      gap: 3rem;
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+
+      .thegallery {
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+        padding: 0 0 1rem 0;
+        border-radius: 1rem;
+        box-shadow: 0 0 1px 0 $light-color;
+      }
+
+      .description {
+        width: 100%;
+        position: relative;
+
+        h2 {
+          font-size: 1.5rem;
+          font-weight: bold;
+          color: $heading-color;
+          margin-bottom: 1rem;
+          display: block;
+        }
+
+        .counts {
+          gap: 1rem;
+          display: grid;
+          align-items: center;
+          margin-bottom: 1rem;
+          grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+
+          .count {
+            background: $light-color;
+            gap: 0.2rem;
+            display: flex;
+            padding: 0.3rem;
+            border-radius: 0.2rem;
+            font-size: 0.9rem;
+            align-items: center;
+            color: $dark-color;
+            justify-content: center;
+            box-shadow: 0 0 1px 0 $black-color;
+
+            span {
+              display: flex;
+            }
+          }
+        }
+
+        .location {
+          margin-bottom: 1rem;
+          gap: 0.3rem;
+          display: flex;
+          align-items: center;
+
+          span {
+            display: flex;
+            color: $dark-color;
+          }
+        }
+
+        .host {
+          gap: 1rem;
+          display: flex;
+          margin: 2rem 0;
+          max-width: 400px;
+          align-items: start;
+          padding: 1rem;
+          border-radius: 1rem;
+          box-shadow: 0 0 1px 0 $dark-color;
+
+          .img {
+            width: 100%;
+            max-width: 5rem;
+            height: 5rem;
+            overflow: hidden;
+            border-radius: 2rem;
+
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
+          }
+
+          .names {
+            width: 100%;
+            position: relative;
+
+            h3 {
+              font-size: 1rem;
+              font-weight: 600;
+              margin-bottom: 0.3rem;
+              text-transform: capitalize;
+            }
+
+            p {
+              font-size: 0.8rem;
+              cursor: default;
+            }
+          }
+        }
+      }
+    }
+
+    .sidebar {
+      width: 100%;
+      max-width: 350px;
+      position: sticky;
+      top: 7rem;
+
+      @media (max-width: 700px) {
+        max-width: 100%;
+      }
+
+      .book {
+        width: 100%;
+        padding: 1rem 1.3rem;
+        position: relative;
+        // overflow: hidden;
+        border-radius: 1rem;
+        border: 1px solid $primary-color;
+        background-color: $white-color;
+
+        .price {
+          padding: 1rem 0;
+          gap: 0.3rem;
+          display: flex;
+          align-items: end;
+
+          h2 {
+            line-height: 0.9;
+            font-size: 2rem;
+            font-weight: 900;
+            color: $primary-color;
+          }
+
+          p {
+            font-weight: 400;
+            font-size: 1rem;
+            color: $secondary-color;
+          }
+        }
+
+        form {
+          width: 100%;
+          padding: 1rem;
+          //   overflow: hidden;
+          position: relative;
+          border-radius: 0.8rem;
+          gap: 0.6rem;
+          display: grid;
+          border: 1px solid $light-color;
+
+          .inputs {
+            display: grid;
+            gap: 1rem;
+            grid-template-columns: repeat(2, 1fr);
+
+            .input {
+              position: relative;
+
+              // Style for input elements inside DatePicker
+              input,
+              .react-datepicker__input-container input {
+                width: 100%;
+                color: $dark-color;
+                transition: $transition;
+
+                &:focus {
+                  border-color: $primary-color;
+                  outline: none;
+                }
+              }
+            }
+          }
+
+          .input {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            position: relative;
+            justify-content: space-between;
+            padding: 0.8rem;
+            border: 1px solid $light-color;
+            border-radius: 0.4rem;
+
+            p {
+              font-size: 1rem;
+              color: $dark-color;
+            }
+          }
+          .btn {
+            button {
+              width: 100%;
+              padding: 1rem;
+              font-size: 1.1rem;
+              color: $white-color;
+              background-color: $primary-color;
+              border: none;
+              border-radius: 0.4rem;
+              cursor: pointer;
+              display: flex;
+              margin-top: 1rem;
+              justify-content: center;
+              transition: $transition;
+
+              &:hover {
+                background-color: darken($primary-color, 10%);
+              }
+
+              &:focus {
+                outline: none;
+              }
+            }
+          }
+
+          .guest-dropdown {
+            position: absolute;
+            top: 7.4rem;
+            right: 0;
+            z-index: 10;
+            width: 100%;
+            padding: 1rem;
+            border-radius: 0.4rem;
+            background: $white-color;
+            border: 1px solid #27272746;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+            .guest-category {
+              display: flex;
+              font-size: 1rem;
+              align-items: center;
+              margin-bottom: 0.6rem;
+              justify-content: space-between;
+
+              button {
+                cursor: pointer;
+                padding: 0.4rem 0.8rem;
+                border-radius: 0.4rem;
+                transition: $transition;
+                border: 1px solid $border-color;
+
+                &:hover {
+                  background: #f5f5f5;
+                }
+              }
+
+              .signs {
+                gap: 0.3rem;
+                display: flex;
+              }
+            }
+          }
+        }
+
+        .button {
+          display: flex;
+          width: 100%;
+          padding: 0.6rem 0;
+          position: relative;
+
+          button {
+            display: flex;
+            font-weight: 500;
+            color: $primary-color;
+            transition: $transition;
+
+            &:hover {
+              opacity: 0.6;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+
+      .host {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.receipt-modal {
+  width: 100%;
+  height: 100%;
+  z-index: 99999;
+  top: 0;
+  left: 0;
+  position: fixed;
+  background: #384cff2f;
+  backdrop-filter: blur(10rem);
+
+  .close {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    font-size: 1.5rem;
+    color: $white-color;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0 0 0.8rem 0.8rem;
+    background: $primary-color;
+    transform: translateX(-50%);
+    transition: $transition;
+    border-top: 0.1rem solid transparent;
+
+    &:hover {
+      color: $primary-color;
+      background: $light-color;
+      border-color: $primary-color;
+    }
+  }
+
+  .content {
+    max-width: 400px;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    padding: 2rem;
+    color: $primary-color;
+    border: 0.1rem solid $primary-color;
+    border-bottom: transparent;
+    border-radius: 1rem 1rem 0 0;
+    background: $white-color;
+
+    .prop-info,
+    .book-info,
+    .date-info {
+      width: 100%;
+      margin-top: 2rem;
+      gap: 0.3rem;
+      display: grid;
+    }
+
+    .line {
+      gap: 1rem;
+      display: flex;
+      align-items: center;
+
+      .title {
+        font-weight: 500;
+      }
+    }
+  }
+}

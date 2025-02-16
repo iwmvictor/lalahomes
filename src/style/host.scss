@@ -1,0 +1,453 @@
+// Color Variables
+$primary-color: #384bff;
+$secondary-color: #2135f3;
+$white-color: #fff;
+$light-color: #d2d2d2;
+$border-color: #e7e7e7;
+$rating-color: #ffb443;
+$heading-color: #232323;
+$dark-color: #272727;
+$black-color: #010101;
+$transition: 0.8s cubic-bezier(0.22, 0.78, 0.45, 1.02);
+
+// HEADER
+.host-navbar {
+  width: 100%;
+  height: 4rem;
+  position: fixed;
+  backdrop-filter: blur(1rem);
+  box-shadow: 0 0 1px 0 $dark-color;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  background: $white-color;
+  justify-content: space-between;
+
+  .content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .logo h2 {
+    font-size: 1.6rem;
+    color: $primary-color;
+  }
+
+  .user {
+    display: flex;
+    align-items: center;
+
+    span {
+      margin-left: 10px;
+      color: $dark-color;
+      font-weight: 500;
+      text-transform: capitalize;
+    }
+
+    img {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 1rem;
+      object-fit: cover;
+    }
+  }
+}
+
+// Sidebar Styling
+.host-sidebar {
+  width: 100%;
+  max-width: 14rem;
+  height: 100vh;
+  position: fixed;
+  top: 4rem;
+  left: 0;
+  bottom: 0;
+  z-index: 500;
+  box-shadow: 0 0 1px 0 $dark-color;
+  transition: width 0.3s ease;
+
+  .content {
+    gap: 0;
+    display: flex;
+    flex-direction: column;
+
+    a {
+      gap: 0.4rem;
+      display: flex;
+      font-size: 1rem;
+      padding-right: 0;
+      padding: 1rem 2rem;
+      color: $dark-color;
+      align-items: center;
+      transition: $transition;
+
+      &:hover {
+        color: $primary-color;
+        background: $border-color;
+      }
+
+      &.active {
+        color: $primary-color;
+        background: $light-color;
+        border-right: 3px solid $secondary-color;
+      }
+
+      span {
+        display: flex;
+      }
+
+      .icon {
+        font-size: 1.3rem;
+      }
+
+      .txt {
+        display: inline-block;
+      }
+    }
+  }
+
+  @media (max-width: 765px) {
+    max-width: 4.5rem;
+
+    .content {
+      a {
+        .txt {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+// Main Content Styling
+.main-content {
+  width: 100%;
+  padding: 1rem;
+  margin-top: 4rem;
+  margin-left: auto;
+  max-width: calc(100% - 14rem);
+  transition: $transition;
+
+  @media (max-width: 765px) {
+    max-width: calc(100% - 4.5rem);
+  }
+
+  // ADD LISTING
+  .addlist {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    background-color: $light-color;
+    min-height: 100vh;
+
+    .db-container {
+      background: $white-color;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 600px;
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .input {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+
+      label {
+        font-weight: bold;
+        color: $heading-color;
+      }
+
+      input,
+      textarea {
+        padding: 0.7rem;
+        border: 1px solid $border-color;
+        border-radius: 5px;
+        font-size: 1rem;
+        transition: border $transition;
+
+        &:focus {
+          border-color: $primary-color;
+          outline: none;
+        }
+      }
+
+      input[type="checkbox"] {
+        width: 16px;
+        height: 16px;
+      }
+    }
+
+    .inputs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+
+      .input {
+        flex: 1;
+        min-width: 45%;
+      }
+    }
+
+    button {
+      background: $primary-color;
+      color: $white-color;
+      padding: 0.8rem;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background $transition;
+
+      &:hover {
+        background: $secondary-color;
+      }
+    }
+  }
+
+  //   VIEW BOOKING
+  $light-grey: #f9f9f9;
+  $border-color: #e7e7e7;
+  $success-color: #28a745;
+  $warning-color: #ffb400;
+  $error-color: #dc3545;
+
+  .view-booking {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px;
+    background: $white-color;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+
+    h2 {
+      text-align: center;
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: $dark-color;
+    }
+
+    .listing-card {
+      background: $light-grey;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 20px;
+      border: 1px solid $border-color;
+
+      .listing-info {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 10px;
+
+        img {
+          width: 60px;
+          height: 60px;
+          border-radius: 5px;
+          object-fit: cover;
+        }
+
+        h3 {
+          font-size: 18px;
+          color: $dark-color;
+        }
+
+        p {
+          font-size: 14px;
+          color: gray;
+        }
+      }
+
+      .booking-list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        .booking-card {
+          background: $white-color;
+          padding: 10px;
+          border-radius: 5px;
+          border: 1px solid $border-color;
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+          transition: all 0.3s ease-in-out;
+
+          .actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 5px;
+
+            .status {
+              font-size: 13px;
+              font-weight: 600;
+              padding: 5px 10px;
+              border-radius: 5px;
+              &.pending {
+                background: rgba($warning-color, 0.1);
+                color: $warning-color;
+              }
+              &.confirmed {
+                background: rgba($success-color, 0.1);
+                color: $success-color;
+              }
+              &.cancelled,
+              &.rejected {
+                background: rgba($error-color, 0.1);
+                color: $error-color;
+              }
+            }
+
+            button {
+              border: none;
+              padding: 6px 12px;
+              border-radius: 4px;
+              cursor: pointer;
+              display: flex;
+              align-items: center;
+              gap: 5px;
+              font-size: 14px;
+              font-weight: 500;
+
+              svg {
+                font-size: 16px;
+              }
+
+              &.preview {
+                background: #e0e0e0;
+                color: $dark-color;
+              }
+
+              &.confirm {
+                background: $success-color;
+                color: $white-color;
+              }
+
+              &.reject {
+                background: $error-color;
+                color: $white-color;
+              }
+
+              &:hover {
+                opacity: 0.8;
+              }
+            }
+          }
+        }
+
+        .no-bookings {
+          text-align: center;
+          font-size: 14px;
+          color: gray;
+          padding: 10px;
+        }
+      }
+    }
+  }
+
+  //   MANAGE LISTINGS
+  .manage-listings {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+    background: $white-color;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+
+    h2 {
+      text-align: center;
+    }
+
+    .add-listing {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 10px;
+      border: 1px solid $border-color;
+      background: $light-grey;
+      border-radius: 8px;
+      margin-bottom: 20px;
+
+      input {
+        padding: 8px;
+        border: 1px solid $border-color;
+        border-radius: 5px;
+      }
+
+      .add {
+        background: $primary-color;
+        color: $white-color;
+        border: none;
+        padding: 8px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    }
+
+    .listing-container {
+      .listing-card {
+        display: flex;
+        align-items: center;
+        background: $white-color;
+        padding: 10px;
+        border: 1px solid $border-color;
+        border-radius: 5px;
+        margin-bottom: 10px;
+
+        img {
+          width: 60px;
+          height: 60px;
+          border-radius: 5px;
+          object-fit: cover;
+        }
+
+        .actions {
+          margin-left: auto;
+          display: flex;
+          gap: 10px;
+
+          button {
+            border: none;
+            padding: 6px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+
+            &.edit {
+              background: $primary-color;
+              color: $white-color;
+            }
+
+            &.delete {
+              background: $error-color;
+              color: $white-color;
+            }
+
+            &.toggle {
+              background: $warning-color;
+              color: $white-color;
+            }
+          }
+        }
+      }
+    }
+  }
+}

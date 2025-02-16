@@ -1,0 +1,140 @@
+$primary-color: #384bff;
+$secondary-color: #2135f3;
+$white-color: #fff;
+$light-color: #d2d2d2;
+$border-color: #e7e7e7;
+$rating-color: #ffb443;
+$heading-color: #232323;
+$dark-color: #272727;
+$black-color: #010101;
+
+$transition: 0.8s cubic-bezier(0.22, 0.78, 0.45, 1.02);
+
+.homepage {
+  width: 100%;
+  position: relative;
+
+  .hero {
+    width: 100%;
+    min-height: 72vh;
+    position: relative;
+    background-image: url("/public/images/banner/hero.jpg");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+
+    .content {
+      width: 100%;
+      position: relative;
+
+      .text {
+        gap: 0.3rem;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+
+        h2 {
+          font-size: 2rem;
+          font-weight: bold;
+          color: $white-color;
+          position: relative;
+        }
+
+        p {
+          font-size: 1rem;
+          color: $white-color;
+        }
+      }
+    }
+
+    .search {
+      position: absolute;
+      bottom: -3rem;
+      left: 50%;
+      z-index: 9;
+      width: 100%;
+      max-width: 850px;
+      overflow: hidden;
+      border-radius: 0.6rem;
+      transform: translateX(-50%);
+      box-shadow: 0 0 1px 0 $dark-color;
+    }
+  }
+
+  .properties {
+    width: 100%;
+    padding: 7rem 0;
+    position: relative;
+    background: $light-color;
+
+    .content {
+      width: 100%;
+      position: relative;
+
+      .sec-title {
+        width: 100%;
+        position: relative;
+
+        h2 {
+          font-size: 1.5rem;
+          font-weight: bold;
+          margin-bottom: 0.6rem;
+          color: $black-color;
+        }
+
+        .title-row {
+          gap: 2rem;
+          display: flex;
+          font-weight: 500;
+          color: $dark-color;
+          align-items: center;
+          margin-bottom: 1rem;
+          justify-content: space-between;
+
+          .sort {
+            display: flex;
+            align-items: center;
+          }
+        }
+      }
+
+      .property-cards {
+        gap: 1rem;
+        width: 100%;
+        display: grid;
+        align-items: stretch;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+        @media (max-width: 300px) {
+          grid-template-columns: repeat(1, 1fr);
+        }
+      }
+
+      .pagination {
+        margin-top: 2rem;
+        gap: 1rem;
+        display: flex;
+        align-items: center;
+
+        button {
+          font-size: 1rem;
+          font-weight: 500;
+          padding: 0.6rem;
+          display: flex;
+          border-radius: 0.4rem;
+          transition: $transition;
+          box-shadow: 0 0 1px 0 $primary-color;
+          background: $white-color;
+
+          &.active {
+            box-shadow: none;
+            color: $white-color;
+            border-radius: 1rem;
+            background: $secondary-color;
+          }
+        }
+      }
+    }
+  }
+}
