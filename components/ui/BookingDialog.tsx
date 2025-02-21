@@ -27,7 +27,7 @@ interface BookingDialogProps {
     onClose: () => void;
 }
 
-const BookingDialog: React.FC<BookingDialogProps> = ({ event, isOpen, onClose }) => {
+const BookingDialog: React.FC<BookingDialogProps> = ({ property, isOpen, onClose }) => {
     const { toast } = useToast(); // Initialize the toast
     const [phone, setPhone] = useState("");
     const [email, setEmail] = useState("");

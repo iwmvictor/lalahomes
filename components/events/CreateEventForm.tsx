@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/form";
 import { useToast } from "@/components/ui/use-toast";
 import { CreateEventSchema } from "@/constants/event.schema";
-import { createEvent, updateEvent } from "@/services/event";
+import { createEvent, updateEvent } from "@/services/property";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { QueryClient, useMutation } from "@tanstack/react-query";
 import dynamic from "next/dynamic";

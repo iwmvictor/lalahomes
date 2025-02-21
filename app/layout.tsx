@@ -1,3 +1,4 @@
+// C:\Users\ising\Downloads\lalahomes\app\layout.tsx
 import type { Metadata } from "next";
 import "./globals.css";
 import Provider from "@/utils/Providers/Provider";

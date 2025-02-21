@@ -5,8 +5,8 @@ import { Button } from "@/components/ui/button";
 import {
 	isAcceptingbooking,
 	setAcceptingBooking,
-} from "@/services/event";
-import { getEvent } from "@/services/event";
+} from "@/services/property";
+import { getEvent } from "@/services/property";
 import { ArrowLeftIcon } from "@heroicons/react/24/outline";
 import { useQuery } from "@tanstack/react-query";
 import { format } from "date-fns";

@@ -1,4 +1,4 @@
-import type { IEvent } from "@/types/index";
+import type { IProperty } from "@/types/index";
 import httpClient from "./httpClient";
 
 export const createEvent = async (data: {
@@ -7,29 +7,29 @@ export const createEvent = async (data: {
 	description: string;
 	bookingDeadline: string;
 	availableSeats: number;
-}): Promise<IEvent> => {
+}): Promise<IProperty> => {
 	return (await httpClient.post("/event", data)).data.data;
 };
 
-export const getAllEvent = async (): Promise<IEvent[]> => {
-	const response = await httpClient.get("/event");
+export const getAllProperties = async (): Promise<IProperty[]> => {
+	const response = await httpClient.get("/property");
 	return response.data.data;
 };
 
-export const getAllMyEvent = async (): Promise<IEvent[]> => {
+export const getAllMyEvent = async (): Promise<IProperty[]> => {
 	const response = await httpClient.get("/event/my");
 	return response.data.data;
 };
 
-export const getEvent = async (id: string): Promise<IEvent> => {
-	const response = await httpClient.get(`/event/${id}`);
+export const getProperty = async (id: string): Promise<IProperty> => {
+	const response = await httpClient.get(`/property/${id}`);
 	return response.data.data;
 };
 
 export const updateEvent = async (
 	id: string,
-	data: Partial<IEvent>,
-): Promise<IEvent> => {
+	data: Partial<IProperty>,
+): Promise<IProperty> => {
 	const response = await httpClient.put(`/event/${id}`, data);
 	return response.data.data;
 };
