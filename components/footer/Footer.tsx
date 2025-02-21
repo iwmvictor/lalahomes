@@ -15,7 +15,7 @@ const Footer = () => {
 				{/* Company Information */}
 				<div className="text-center md:text-left">
 					<Typography variant="h5" className="font-bold mb-2">
-						Happi ltd
+						Lala Rentals
 					</Typography>
 					<p className="text-sm max-w-xs">
 						Providing innovative solutions to meet your needs in Kigali and beyond. Dedicated to excellence and client satisfaction.
@@ -35,7 +35,7 @@ const Footer = () => {
 							href="mailto:gdushimimana6@gmail.com"
 							className="text-yellow-500 underline hover:text-yellow-400"
 						>
-							gdushimimana6@gmail.com
+							info@lalarentals.com
 						</a>
 					</p>
 				</div>
@@ -90,7 +90,7 @@ const Footer = () => {
 
 			{/* Footer Bottom */}
 			<div className="mt-8 border-t border-gray-700 pt-4 text-center text-sm text-gray-400">
-				<p>&copy; {new Date().getFullYear()} Happi ltd. All rights reserved.</p>
+				<p>&copy; {new Date().getFullYear()} Lala Rentals. All rights reserved.</p>
 			</div>
 		</footer>
 	);

@@ -17,16 +17,14 @@ import Link from "next/link";
 
 const EventSection = () => {
   const [isDialogOpen, setDialogOpen] = useState(false);
-  const [selectedProperty, setSelectedProperty] = useState<IProperty | null>(null);
+  const [selectedProperty, setSelectedProperty] = useState<IProperty | null>(
+    null
+  );
 
   const { data: propeties, isLoading } = useQuery({
     queryKey: ["PROPERTY"],
     queryFn: getAllProperties,
   });
-
- 
-
-  
 
   const formatDate = (dateString: string): string => {
     return new Date(dateString).toLocaleDateString(); // Simplified date formatting
@@ -58,27 +56,8 @@ const EventSection = () => {
                     src={property.thumbnail}
                     alt={property.title}
                   />
-
-                  <div className="absolute top-[10px] left-[10px] px-3 py-1 text-white text-lg font-semibold bg-white/50 backdrop-blur-md rounded-md">
-                    ${property.pricePerNight}
-                  </div>
-
-                  <div className="absolute bottom-[10px] left-[10px] flex flex-row items-center gap-2 text-sm text-white drop-shadow-md">
-                    <div className="flex items-center ">
-                      <MapPinIcon className="h-5 w-5 text-white mr-2 drop-shadow-lg" />
-                      <p className="truncate w-full max-w-xs drop-shadow-lg">
-                        {property.location}
-                      </p>
-                    </div>
-
-                    <div className="flex items-center ">
-                      <BedIcon className="h-5 w-5 text-white mr-2 drop-shadow-lg" />
-                      <p className="truncate w-full max-w-xs drop-shadow-lg">
-                        {property.bedrooms}
-                      </p>
-                    </div>
-                  </div>
                 </div>
+
                 <Typography
                   variant="h5"
                   className="font-bold mt-2 mb-2 text-xl capitalize truncate"
@@ -88,25 +67,40 @@ const EventSection = () => {
                     : property.title}
                 </Typography>
 
-                <div className="flex items-center mb-2">
-                  <UsersIcon className="h-5 w-5 text-blue-600 mr-2" />
-                  <p className="text-gray-700 truncate w-full max-w-xs">
-                    Hosted by: {property.user.firstName}{" "}
-                    {property.user.lastName}
-                  </p>
+                <div className="relative  flex flex-row items-center gap-2 text-sm text-primary ">
+                  <div className="flex items-center ">
+                    <MapPinIcon className="h-5 w-5 mr-2 " />
+                    <p className="truncate w-full max-w-xs ">
+                      {property.location}
+                    </p>
+                  </div>
+
+                  <div className="flex items-center ">
+                    <BedIcon className="h-5 w-5 text-white mr-2 drop-shadow-lg" />
+                    <p className="truncate w-full max-w-xs drop-shadow-lg">
+                      {property.bedrooms}
+                    </p>
+                  </div>
                 </div>
-                <Link href={`/property/${property.id}`}
+
+                <div className="relative px-3 mb-3 mt-1 text-primary">
+                  <span className=" text-lg font-bold">
+                    {" "}
+                    ${property.pricePerNight}
+                  </span>
+                  <span className="text-[.8rem] ">per night</span>
+                </div>
+                <Link
+                  href={`/property/${property.id}`}
                   className="inline-block bg-yellow-600 text-white rounded-full px-4 py-2 text-lg hover:bg-yellow-700 transition-colors"
                 >
                   Property
                 </Link>
-                
               </div>
             );
           })}
         </div>
       </div>
-      
     </section>
   );
 };
