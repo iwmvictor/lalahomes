@@ -3,7 +3,7 @@ import ConfirmationModal from "@/components/ui/ConfirmDialog";
 import { Button } from "@/components/ui/button";
 import { customStyles } from "@/components/ui/helper.css";
 import { useToast } from "@/components/ui/use-toast";
-import { deleteEvent, getAllMyEvent } from "@/services/event";
+import { deleteEvent, getAllMyEvent } from "@/services/property";
 import type { IEvent } from "@/types/index";
 import { PencilIcon } from "@heroicons/react/24/outline";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";

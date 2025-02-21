@@ -1,7 +1,7 @@
 "use client";
 import EventForm from "@/components/events/CreateEventForm";
 import Loader from "@/components/ui/Loader";
-import { getEvent } from "@/services/event";
+import { getEvent } from "@/services/property";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
 

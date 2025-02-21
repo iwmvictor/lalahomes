@@ -1,8 +1,7 @@
 export const roles = {
 	ADMIN: "ADMIN",
-	COMPANY_ADMIN: "COMPANY_ADMIN",
-	COMPANY_USER: "COMPANY_USER",
-	USER: "USER",
+	HOST: "HOST",
+	RENTER:"RENTER"
 };
 
 export type IRole = keyof typeof roles;

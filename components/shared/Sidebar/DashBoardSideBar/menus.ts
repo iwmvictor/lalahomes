@@ -61,11 +61,11 @@ export const mainMenu: MenuItemWithIcon[] = [
 		href: "/dashboard3",
 		icon: Squares2X2Icon,
 		isCollapsible: false,
-		roles: ["COMPANY_ADMIN"],
+		roles: ["HOST"],
 	},
 	{
-		name: "Companies",
-		href: "/companies",
+		name: "Users",
+		href: "/users",
 		icon: BuildingOffice2Icon,
 		isCollapsible: false,
 		roles: ["ADMIN"],
@@ -75,7 +75,7 @@ export const mainMenu: MenuItemWithIcon[] = [
 		href: "/events",
 		icon: FaGlassCheers,
 		isCollapsible: false,
-		roles: ["COMPANY_ADMIN"],
+		roles: ["HOST"],
 	},
 ];
 
