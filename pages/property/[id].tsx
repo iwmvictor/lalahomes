@@ -12,6 +12,7 @@ import img1 from "@/public/img/101.png";
 import img2 from "@/public/img/102.jpg";
 import img3 from "@/public/img/101.png";
 
+// Sample properties with bookings
 const properties = [
   {
     id: "1",
@@ -88,11 +89,18 @@ const properties = [
   },
 ];
 
+// Helper: Normalize a date (set to midnight)
+const normalizeDate = (date) => {
+  const d = new Date(date);
+  d.setHours(0, 0, 0, 0);
+  return d;
+};
+
 const PropertyPage = () => {
   const router = useRouter();
   const { id } = router.query;
   const [property, setProperty] = useState(null);
-  // Switch to storing Date objects (or null) instead of strings
+  // Store Date objects for the date pickers
   const [checkInDate, setCheckInDate] = useState(null);
   const [checkOutDate, setCheckOutDate] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -115,20 +123,30 @@ const PropertyPage = () => {
     return () => clearInterval(interval);
   }, [property?.gallery]);
 
-  // Build an array of date intervals (using react-datepicker's expected format)
+  // Build booked intervals (normalized to disable full days)
   const bookedIntervals =
     property?.bookings?.map((booking) => ({
-      start: new Date(booking.checkInDate),
-      end: new Date(booking.checkOutDate),
+      start: normalizeDate(booking.checkInDate),
+      end: normalizeDate(booking.checkOutDate),
     })) || [];
 
-  // Helper function to check for overlap in case of manual validation
+  // Helper to determine if a given date falls within any booked interval.
+  const isDateDisabled = (date) => {
+    const normalized = normalizeDate(date);
+    return bookedIntervals.some(
+      (interval) => normalized >= interval.start && normalized <= interval.end
+    );
+  };
+
+  // Helper to determine if the entire range from start to end overlaps any booking.
   const isDateRangeBooked = (start, end) => {
     if (!property?.bookings) return false;
+    const normalizedStart = normalizeDate(start);
+    const normalizedEnd = normalizeDate(end);
     return property.bookings.some((booking) => {
-      const bookedStart = new Date(booking.checkInDate);
-      const bookedEnd = new Date(booking.checkOutDate);
-      return start < bookedEnd && end > bookedStart;
+      const bookedStart = normalizeDate(booking.checkInDate);
+      const bookedEnd = normalizeDate(booking.checkOutDate);
+      return normalizedStart < bookedEnd && normalizedEnd > bookedStart;
     });
   };
 
@@ -142,7 +160,9 @@ const PropertyPage = () => {
     }
 
     if (isDateRangeBooked(checkInDate, checkOutDate)) {
-      setMessage("Selected dates are already booked. Please choose different dates.");
+      setMessage(
+        "Selected dates are already booked. Please choose different dates."
+      );
       return;
     }
 
@@ -153,7 +173,6 @@ const PropertyPage = () => {
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          // Convert dates to ISO strings before sending
           body: JSON.stringify({
             propertyId: id,
             checkInDate: checkInDate.toISOString(),
@@ -165,8 +184,7 @@ const PropertyPage = () => {
       const data = await response.json();
       if (response.ok) {
         setMessage("Booking successful!");
-        // Optionally update local bookings state
-        // setProperty({ ...property, bookings: [...property.bookings, data.booking] });
+        // Optionally update local bookings state here.
       } else {
         setMessage(data.message || "Booking failed.");
       }
@@ -188,7 +206,7 @@ const PropertyPage = () => {
   return (
     <div className="w-full relative">
       <Header />
-      <div className="mt-[6rem] w-full relative h-[10rem] flex items-center bg-primary">
+      {/* <div className="mt-[6rem] w-full relative h-[10rem] flex items-center bg-primary">
         <div className="w-[90%] m-auto">
           <h2 className="text-2xl text-white font-bold">{property.title}</h2>
           <div className="flex flex-row gap-3 items-center mt-2 text-gray-400">
@@ -203,7 +221,7 @@ const PropertyPage = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       <div className="w-[95%] m-auto pt-10 pb-10 relative">
         <div className="w-full relative flex items-start py-8 gap-[1rem]">
@@ -267,12 +285,17 @@ const PropertyPage = () => {
               </label>
               <ReactDatePicker
                 selected={checkInDate}
-                onChange={(date) => setCheckInDate(date)}
+                onChange={(date) => {
+                  setCheckInDate(date);
+                  // Reset check-out date when check-in changes
+                  setCheckOutDate(null);
+                }}
                 dateFormat="yyyy-MM-dd"
                 minDate={new Date()}
-                excludeDateIntervals={bookedIntervals}
+                // Disable dates that fall within any booked interval.
+                filterDate={(date) => !isDateDisabled(date)}
                 placeholderText="Select check-in date"
-                className="w-full p-2 border rounded mb-3"
+                className="w-full p-2 border rounded mb-3 w-[350px] "
               />
 
               <label className="block text-sm font-semibold mb-1">
@@ -283,9 +306,13 @@ const PropertyPage = () => {
                 onChange={(date) => setCheckOutDate(date)}
                 dateFormat="yyyy-MM-dd"
                 minDate={checkInDate || new Date()}
-                excludeDateIntervals={bookedIntervals}
+                // Ensure the entire range from check-in to check-out is free of conflicts.
+                filterDate={(date) => {
+                  if (!checkInDate) return true;
+                  return !isDateRangeBooked(checkInDate, date);
+                }}
                 placeholderText="Select check-out date"
-                className="w-full p-2 border rounded mb-3"
+                className="w-full p-2 border rounded mb-3 w-[350px]"
               />
 
               <button
@@ -299,20 +326,6 @@ const PropertyPage = () => {
                 <p className="text-center text-red-500 mt-3">{message}</p>
               )}
             </form>
-
-            {property.bookings && property.bookings.length > 0 && (
-              <div className="mt-4 bg-gray-100 p-4 rounded">
-                <h4 className="font-semibold mb-2">Already Booked Dates:</h4>
-                <ul className="list-disc ml-5">
-                  {property.bookings.map((booking) => (
-                    <li key={booking.id}>
-                      {new Date(booking.checkInDate).toLocaleDateString()} -{" "}
-                      {new Date(booking.checkOutDate).toLocaleDateString()}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
           </div>
         </div>
       </div>

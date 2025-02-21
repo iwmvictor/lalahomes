@@ -3,6 +3,7 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import Typography from "../typography/Typography";
+import { Button } from "../ui/button";
 
 // Smooth scroll function with offset to account for the header height
 const scrollToSection = (id: string) => {
@@ -21,7 +22,7 @@ const Header = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="px-4 py-5 bg-slate-200 flex justify-between items-center fixed top-0 left-0 right-0 shadow-md z-50">
+    <header className="px-4 py-2 bg-slate-200 flex justify-between items-center fixed top-0 left-0 right-0 shadow-md z-50">
       <div className="flex items-center">
         {/* Hamburger Icon */}
         <div className="sm:hidden pr-2">
@@ -80,12 +81,11 @@ const Header = () => {
         {/* Book Now Button */}
         <div className="ml-2 sm:ml-4 lg:ml-5">
           <Link href="/auth/signin">
-            <Typography
-              variant="h6"
-              className="text-white text-center bg-yellow-600 px-4 py-2 sm:px-6 sm:py-3 lg:px-8 lg:py-4 rounded-full text-base sm:text-lg lg:text-xl"
-            >
-              Login
-            </Typography>
+			<Button
+			 className="text-white text-center bg-yellow-600"
+			>
+				Login
+			</Button>
           </Link>
         </div>
       </div>
