@@ -14,6 +14,7 @@ import { IProperty } from "@/types";
 import Loader from "@/components/ui/Loader";
 import { BedIcon } from "lucide-react";
 import Link from "next/link";
+import { Button } from "../ui/button";
 
 const EventSection = () => {
   const [isDialogOpen, setDialogOpen] = useState(false);
@@ -67,7 +68,7 @@ const EventSection = () => {
                     : property.title}
                 </Typography>
 
-                <div className="relative  flex flex-row items-center gap-2 text-sm text-primary ">
+                <div className="relative  flex flex-row justify-between items-center gap-2 text-sm text-primary ">
                   <div className="flex items-center ">
                     <MapPinIcon className="h-5 w-5 mr-2 " />
                     <p className="truncate w-full max-w-xs ">
@@ -75,26 +76,19 @@ const EventSection = () => {
                     </p>
                   </div>
 
-                  <div className="flex items-center ">
-                    <BedIcon className="h-5 w-5 text-white mr-2 drop-shadow-lg" />
-                    <p className="truncate w-full max-w-xs drop-shadow-lg">
-                      {property.bedrooms}
-                    </p>
+                  <div className="relative px-3 mb-3 mt-1 text-primary">
+                    <span className=" text-lg font-bold">
+                      {" "}
+                      ${property.pricePerNight}
+                    </span>
+                    <span className="text-[.8rem] ">per night</span>
                   </div>
                 </div>
 
-                <div className="relative px-3 mb-3 mt-1 text-primary">
-                  <span className=" text-lg font-bold">
-                    {" "}
-                    ${property.pricePerNight}
-                  </span>
-                  <span className="text-[.8rem] ">per night</span>
-                </div>
-                <Link
-                  href={`/property/${property.id}`}
-                  className="inline-block bg-yellow-600 text-white rounded-full px-4 py-2 text-lg hover:bg-yellow-700 transition-colors"
-                >
-                  Property
+                <Link href={`/property/${property.id}`}>
+                  <Button className="inline-block bg-yellow-600 text-white">
+                    Book Now
+                  </Button>
                 </Link>
               </div>
             );
